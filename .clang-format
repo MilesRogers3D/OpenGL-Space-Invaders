@@ -1,0 +1,7 @@
+﻿---
+BasedOnStyle: Mozilla
+AllowShortIfStatementsOnASingleLine: Never
+AlwaysBreakAfterDefinitionReturnType: None
+AlwaysBreakAfterReturnType: None
+
+...
