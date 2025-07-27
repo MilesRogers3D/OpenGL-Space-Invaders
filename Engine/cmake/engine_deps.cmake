@@ -24,3 +24,6 @@ FetchContent_Declare(spdlog
 )
 FetchContent_MakeAvailable(spdlog)
 list(APPEND ${ENGINE_DEPS_LIST} spdlog)
+
+## GLM ##
+add_subdirectory(${CMAKE_SOURCE_DIR}/Engine/ext/glm)

@@ -1,5 +1,7 @@
 #pragma once
 
+#include "defs.h"
+
 #include <cstdint>
 #include <string>
 
@@ -9,25 +11,39 @@ namespace Engine::Platform {
 
 struct WindowParams
 {
-  uint32_t width    = 1280;
-  uint32_t height   = 720;
-  bool maximized    = false;
-  bool vSync        = false;
+  uint32_t width = 1280;
+  uint32_t height = 720;
+  bool maximized = false;
+  bool vSync = false;
   std::string title = "Engine Window";
 };
 
-class Window 
+class ENG_API Window
 {
 public:
-  explicit Window(const WindowParams& params);
-  ~Window();
+  explicit Window(WindowParams params);
+  ~Window() = default;
 
   bool create();
+  void update();
+  void terminate();
+
+  [[nodiscard]]
+  bool shouldClose();
+
+  static void setViewport(uint32_t x, uint32_t y, uint32_t w, uint32_t h);
+
+protected:
+  static void c_onFramebufferSizeChanged(GLFWwindow* window,
+                                         int width,
+                                         int height);
 
 private:
   static void p_initGLFW();
   bool p_initWindow();
   static bool p_initGLAD();
+
+  void p_setupGLFWCallbacks();
 
 private:
   WindowParams m_windowParams;

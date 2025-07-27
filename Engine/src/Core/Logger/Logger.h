@@ -1,12 +1,14 @@
 #pragma once
 
+#include "defs.h"
+
 #include <spdlog/spdlog.h>
 
 #include <string>
 
 namespace Engine {
 
-class Logger 
+class ENG_API Logger
 {
 public:
   static void initialize();

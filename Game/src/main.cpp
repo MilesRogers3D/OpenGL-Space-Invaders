@@ -3,10 +3,14 @@
 #include <Engine.h>
 
 int main() {
+  Engine::Application app;
+
   Engine::Platform::WindowParams windowParams = {};
   windowParams.title = "OpenGL Space Invaders";
 
-  Engine::Application app(windowParams);
+  if (!app.createWindow(windowParams)) {
+    return -1;
+  }
 
-  while (true) {}
+  app.start();
 }

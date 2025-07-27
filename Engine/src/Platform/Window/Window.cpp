@@ -4,14 +4,14 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
+#include <utility>
+
 using namespace Engine::Platform;
 
-Window::Window(const WindowParams& params)
-  : m_windowParams(params) {}
-
-Window::~Window()
+Window::Window(WindowParams params)
+  : m_windowParams(std::move(params)),
+    m_window(nullptr)
 {
-
 }
 
 bool Window::create()
@@ -25,6 +25,9 @@ bool Window::create()
   if (!p_initGLAD()) {
     return false;
   }
+
+  p_setupGLFWCallbacks();
+  setViewport(0, 0, m_windowParams.width, m_windowParams.height);
 
   return true;
 }
@@ -40,8 +43,8 @@ void Window::p_initGLFW()
 bool Window::p_initWindow()
 {
   m_window = glfwCreateWindow(
-    m_windowParams.width,
-    m_windowParams.height,
+    static_cast<int>(m_windowParams.width),
+    static_cast<int>(m_windowParams.height),
     m_windowParams.title.c_str(),
     nullptr, nullptr);
 
@@ -58,11 +61,48 @@ bool Window::p_initWindow()
 bool Window::p_initGLAD()
 {
   if (!gladLoadGLLoader(
-      reinterpret_cast<GLADloadproc>(glfwGetProcAddress)))
-  {
+      reinterpret_cast<GLADloadproc>(glfwGetProcAddress))) {
     Logger::logError("Failed to initialize GLAD");
     return false;
   }
 
   return true;
+}
+
+void Window::terminate()
+{
+  glfwTerminate();
+}
+
+void Window::update()
+{
+  glClearColor(0.2F, 0.3F, 0.3F, 1.0F);
+  glClear(GL_COLOR_BUFFER_BIT);
+
+  glfwPollEvents();
+  glfwSwapBuffers(m_window);
+}
+
+void Window::c_onFramebufferSizeChanged(GLFWwindow* window,
+                                        int width,
+                                        int height)
+{
+  setViewport(0, 0, width, height);
+}
+
+void Window::setViewport(
+  uint32_t x, uint32_t y, uint32_t w, uint32_t h)
+{
+  glViewport(static_cast<GLint>(x), static_cast<GLint>(y),
+             static_cast<GLint>(w), static_cast<GLint>(h));
+}
+
+void Window::p_setupGLFWCallbacks()
+{
+  glfwSetFramebufferSizeCallback(m_window, c_onFramebufferSizeChanged);
+}
+
+bool Window::shouldClose()
+{
+  return glfwWindowShouldClose(m_window);
 }
