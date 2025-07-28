@@ -14,6 +14,9 @@ add_library(${ENGINE_LIB_NAME} SHARED
   src/Core/Logger/Logger.cpp
   src/Core/Logger/Logger.h
   src/defs.h
+  src/Renderer/Renderer.cpp
+  src/Renderer/Renderer.h
+  src/Platform/Input/Input.h
 )
 
 target_include_directories(${ENGINE_LIB_NAME}

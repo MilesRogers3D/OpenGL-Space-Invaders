@@ -1,5 +1,6 @@
 #pragma once
 
+#include "defs.h"
 #include "Scene/ECS/Types/SparseSet.h"
 
 #include <typeindex>
@@ -9,7 +10,7 @@
 
 namespace Engine {
 
-class World
+class ENG_API World
 {
 public:
   Entity createEntity();
