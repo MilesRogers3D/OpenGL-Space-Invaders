@@ -25,8 +25,11 @@ public:
   ~Window() = default;
 
   bool create();
-  void update();
   void terminate();
+
+  static void clearSurface();
+  static void pollInput();
+  void swapBuffers() const;
 
   [[nodiscard]]
   bool shouldClose();

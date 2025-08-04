@@ -17,6 +17,14 @@ add_library(${ENGINE_LIB_NAME} SHARED
   src/Renderer/Renderer.cpp
   src/Renderer/Renderer.h
   src/Platform/Input/Input.h
+  src/Core/Math/MathTypes.h
+  src/IO/Model/IModelParser.h
+  src/IO/Model/OBJ/OBJParser.cpp
+  src/IO/Model/OBJ/OBJParser.h
+  src/IO/Model/Types/ModelTypes.h
+  src/Renderer/Types/Color.cpp
+  src/Renderer/Types/Color.h
+  src/Renderer/Types/ColorPresets.h
 )
 
 target_include_directories(${ENGINE_LIB_NAME}
@@ -26,10 +34,11 @@ target_include_directories(${ENGINE_LIB_NAME}
 )
 
 target_link_libraries(${ENGINE_LIB_NAME}
+  PUBLIC
+    spdlog
   PRIVATE
     glfw
     glad
-    spdlog
     glm
 )
 

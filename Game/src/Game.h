@@ -8,8 +8,11 @@ public:
   explicit Game(const Engine::Platform::WindowParams& windowParams);
   ~Game() override = default;
 
-private:
+public:
   void start() override;
-  void update(double deltaTime) override;
-  void onInput(const Engine::InputEvent &event) override;
+  void update() override;
+  void onKeyboardInput(const Engine::EKeyCode& keyCode) override;
+
+private:
+  Engine::Color m_clearColor;
 };

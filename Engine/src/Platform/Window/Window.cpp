@@ -74,12 +74,19 @@ void Window::terminate()
   glfwTerminate();
 }
 
-void Window::update()
+void Window::clearSurface()
 {
   glClearColor(0.2F, 0.3F, 0.3F, 1.0F);
   glClear(GL_COLOR_BUFFER_BIT);
+}
 
+void Window::pollInput()
+{
   glfwPollEvents();
+}
+
+void Window::swapBuffers() const
+{
   glfwSwapBuffers(m_window);
 }
 

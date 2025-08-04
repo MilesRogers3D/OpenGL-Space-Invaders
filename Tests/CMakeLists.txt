@@ -5,6 +5,7 @@ include(cmake/test_deps.cmake)
 
 add_executable(${TESTS_EXE_NAME}
   src/Engine/Scene/ECSTests.cpp
+  src/Engine/Renderer/Types/ColorTests.cpp
 )
 target_link_libraries(${TESTS_EXE_NAME}
   PRIVATE

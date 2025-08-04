@@ -14,21 +14,21 @@ public:
   explicit Application(const Platform::WindowParams& windowParams);
   virtual ~Application() = default;
 
+public:
+  [[nodiscard]]
+  bool shouldClose() const;
+
 protected:
   virtual void start();
-  virtual void update(double deltaTime);
-  virtual void onInput(const InputEvent& event);
+  virtual void update();
+
+  virtual void onKeyboardInput(const EKeyCode& keyCode);
 
 private:
   void p_initializeSystems();
-  void p_startUpdateLoop();
-
-  [[nodiscard]]
-  static double p_getTime();
 
 private:
   std::shared_ptr<Platform::Window> m_window;
-  double m_lastTime = 0;
 };
 
 } // Engine

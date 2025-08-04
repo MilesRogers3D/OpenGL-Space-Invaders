@@ -1,5 +1,8 @@
 #pragma once
 
+#include "IO/Model/Types/ModelTypes.h"
+#include "Renderer/Types/Color.h"
+
 #include <string>
 
 namespace Engine::Components {
@@ -43,6 +46,16 @@ struct BoxCollider
   {
     return width == other.width && height == other.height;
   }
+};
+
+struct LineRenderer
+{
+  std::shared_ptr<IO::Model> mesh = nullptr;
+  Color color = Color(1.0F, 1.0F, 1.0F, 1.0F);
+  float lineWidth = 1.0F;
+
+  explicit LineRenderer(const std::shared_ptr<IO::Model>& mesh)
+    : mesh(mesh) {}
 };
 
 }
