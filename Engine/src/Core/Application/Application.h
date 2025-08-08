@@ -2,7 +2,8 @@
 
 #include "defs.h"
 #include "Platform/Window/Window.h"
-#include "Platform/Input/Input.h"
+#include "Platform/Input/InputCodes.h"
+#include "Platform/Input/InputSystem.h"
 
 #include <memory>
 
@@ -10,6 +11,7 @@ namespace Engine {
 
 class ENG_API Application
 {
+  friend class InputSystem;
 public:
   explicit Application(const Platform::WindowParams& windowParams);
   virtual ~Application() = default;
@@ -29,6 +31,7 @@ private:
 
 private:
   std::shared_ptr<Platform::Window> m_window;
+  std::shared_ptr<InputSystem> m_inputSystem;
 };
 
 } // Engine

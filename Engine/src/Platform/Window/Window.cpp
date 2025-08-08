@@ -97,6 +97,11 @@ void Window::c_onFramebufferSizeChanged(GLFWwindow* window,
   setViewport(0, 0, width, height);
 }
 
+GLFWwindow* Window::getGLFWWindowHandle() const
+{
+  return m_window;
+}
+
 void Window::setViewport(
   uint32_t x, uint32_t y, uint32_t w, uint32_t h)
 {

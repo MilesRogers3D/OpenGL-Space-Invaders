@@ -16,7 +16,7 @@ add_library(${ENGINE_LIB_NAME} SHARED
   src/defs.h
   src/Renderer/Renderer.cpp
   src/Renderer/Renderer.h
-  src/Platform/Input/Input.h
+  src/Platform/Input/InputCodes.h
   src/Core/Math/MathTypes.h
   src/IO/Model/IModelParser.h
   src/IO/Model/OBJ/OBJParser.cpp
@@ -25,6 +25,8 @@ add_library(${ENGINE_LIB_NAME} SHARED
   src/Renderer/Types/Color.cpp
   src/Renderer/Types/Color.h
   src/Renderer/Types/ColorPresets.h
+  src/Platform/Input/InputSystem.cpp
+  src/Platform/Input/InputSystem.h
 )
 
 target_include_directories(${ENGINE_LIB_NAME}

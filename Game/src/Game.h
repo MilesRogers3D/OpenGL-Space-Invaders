@@ -15,4 +15,7 @@ public:
 
 private:
   Engine::Color m_clearColor;
+
+  Engine::World m_world;
+  Engine::Entity m_testSprite;
 };

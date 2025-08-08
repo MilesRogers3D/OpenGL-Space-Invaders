@@ -36,6 +36,8 @@ public:
 
   static void setViewport(uint32_t x, uint32_t y, uint32_t w, uint32_t h);
 
+  GLFWwindow* getGLFWWindowHandle() const;
+
 protected:
   static void c_onFramebufferSizeChanged(GLFWwindow* window,
                                          int width,

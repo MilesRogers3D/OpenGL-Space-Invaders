@@ -36,4 +36,8 @@ void Application::p_initializeSystems()
 {
   // Init logger
   Logger::initialize();
+
+  // Init input system
+  m_inputSystem = std::make_shared<InputSystem>(m_window, this);
+  m_inputSystem->initialize();
 }
